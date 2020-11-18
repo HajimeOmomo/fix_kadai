@@ -44,34 +44,28 @@ void printTime(long kikan){
   
 int main(){
   FILE *fp;
-  struct LOG log[10];
-  
+  struct LOG log[10]; 
   char s[N][N],*cp,handan_name[N];
   const char *sikiri=",";
   long handan_time=0,kikan;
   int i = 0,j = 0,len=0,ct=0; //ctによって一度のエラーにつき一回のみと判断
-  
-  //printTime(20201111111010);
+
   
   fp = fopen("server.txt","r");
   
   while(fgets(s[i],N,fp)!=NULL){
     cp = strtok(s[i],sikiri);
     log[i].time=atol(cp);//ここで時間を挿入、文字列から数に変換
-    //printf("%ld %s\n", log[i].time,cp);
     int c=0;
     while(cp!=NULL){
       cp = strtok(NULL,sikiri);
-      //printf("unko\n");
       if(cp!=NULL&&c==0){
 	strcpy(log[i].server_name,cp);	//ここでサーバーの名前を挿入
 	c++;
-	//printf("ok %d\n",i);
 	
 	if(strcmp(&handan_name[len-1],"1")&&
 	   strncmp(handan_name,log[i].server_name,8)==0&&ct==1){ //if(故障していたら)ここでサーバーの名前がかぶってないか判断
 	  kikan=log[i].time-handan_time;
-
 	  printTime(kikan);
 	  ct--;
 	}else if(strcmp(&handan_name[len-1],"2")&&
@@ -90,22 +84,13 @@ int main(){
 	  handan_time = log[i].time;
 	  strcpy(handan_name,log[i].server_name);
 	  ct++;
-	  //printf("len is %d\n",len);
 	}
       }
     }
     i++;
   }
   
-  /*for(j=0;j<10;j++){
-    printf("time is %d\n",log[j].time);
-    printf("server_name is %s\n",log[j].server_name);
-    printf("result is %s\n",log[j].result);
-   
-    }*/ //確認用
-  
   
   fclose(fp);
-  free()
   return 0;
 }
