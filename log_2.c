@@ -86,7 +86,7 @@ int main(){
 	    if(strcmp(han[h].handan_name,log[i].server_name)==0){	      
 	      kikan=log[i].time-han[h].time;
 	      printf("サーバー%sが故障状態です\n",han[h].handan_name);
-	      printf("log.time is %ld\nhandan is %ld\n",log[i].time,han[h].time);
+	      //printf("log.time is %ld\nhandan is %ld\n",log[i].time,han[h].time);
 	      printTime(kikan);
 	      han[h].count = false;
 	      
